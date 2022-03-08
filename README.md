@@ -1,4 +1,4 @@
-# Exercicio-De-Fixacao
+# Exercicio De Fixacao
 Com base nos arquivos oscar_age_male.csv e oscar_age_female.csv, escreva uma aplicação utilizando o framework Java Streams API para responder as seguintes funcionalidades.
 
  1. Quem foi o ator mais jovem a ganhar um Oscar?
