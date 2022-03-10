@@ -1,18 +1,35 @@
 package br.com.segundoprojeto;
 
-public class LeituraDeArquivos {
-    Integer index;
-    Integer year;
-    Integer age;
-    String name;
-    String movie;
+import java.awt.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-    public LeituraDeArquivos(Integer index, Integer year, Integer age, String name, String movie){
-        this.index = index;
-        this.year = year;
-        this.age = age;
-        this.name = name;
-        this.movie = movie;
+public class LeituraDeArquivos{
+
+    private List<TabelaDeArtistas> tabelaDeArtistasList;
+
+    public LeituraDeArquivos(String filename){
+        this.tabelaDeArtistasList = lerTabelas(filename);
     }
 
+    private List<TabelaDeArtistas> lerTabelas(String filename){
+        try(Stream<String> fileLines = Files.lines(Paths.get(filename))){
+            return fileLines
+                    .skip(1)
+                    .map(TabelaDeArtistas::of)
+                    .collect(Collectors.toList());
+        } catch (IOException e){
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
+
+    public List<TabelaDeArtistas> getTabelaDeArtistasList() {
+        return tabelaDeArtistasList;
+    }
 }
