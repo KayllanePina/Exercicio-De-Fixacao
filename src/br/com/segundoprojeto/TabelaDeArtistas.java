@@ -1,13 +1,17 @@
 package br.com.segundoprojeto;
 
-public class TabelaDeArtistas {
-    Integer index;
-    Integer year;
-    Integer age;
-    String name;
-    String movie;
+import java.util.Arrays;
 
-    public TabelaDeArtistas(Integer index, Integer year, Integer age, String name, String movie){
+import static java.lang.Integer.*;
+
+public class TabelaDeArtistas {
+    private Integer index;
+    private Integer year;
+    private Integer age;
+    private String name;
+    private String movie;
+
+    private TabelaDeArtistas(Integer index, Integer year, Integer age, String name, String movie) {
         this.index = index;
         this.year = year;
         this.age = age;
@@ -15,17 +19,18 @@ public class TabelaDeArtistas {
         this.movie = movie;
     }
 
-
     public static TabelaDeArtistas of(String line){
-        String [] split = line.split(",(?=\\S)");
+        String[] split = line.split(",(?=\\S)");
 
         return new TabelaDeArtistas(
-          Integer.parseInt(split[0]),
-          Integer.parseInt(split[1]),
-          Integer.parseInt(split[2]),
-          split[3],
-          split[4]
-        );
+                //NumberFormatException For input string: "1; 1928; 44; Emil Jannings; The Last Command, The Way of All Flesh"
+                Integer.parseInt(split[0]),
+                Integer.parseInt(split[1]),
+                Integer.parseInt(split[2]),
+                split[3].replace("\"", ""),
+                split[4]
+                );
+
     }
 
     public Integer getIndex() {
