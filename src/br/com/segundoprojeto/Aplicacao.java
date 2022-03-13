@@ -1,12 +1,8 @@
 package br.com.segundoprojeto;
 
-import java.io.IOException;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.groupingBy;
-import static java.util.stream.Collectors.toList;
 
 public class Aplicacao{
     private static LeituraDeArquivos leituraDeArquivos;
@@ -73,7 +69,7 @@ public class Aplicacao{
                 .map(TabelaDeArtistas::getName)
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                 .entrySet().stream()
-                .filter(it -> it.getValue() >= 2)
+                .filter(it -> it.getValue() > 1)
                 .sorted(Map.Entry.comparingByValue())
                 .collect(Collectors.toList())
                 .forEach(it -> System.out.println("Os atores e atrizes que mais receberam o Oscar foram " + it.getKey() + " com " + it.getValue() + " premiações \n"));
@@ -90,17 +86,13 @@ public class Aplicacao{
 
         List<TabelaDeArtistas> tabelaDeArtistasList = leituraDeArquivos.getTabelaDeArtistasList();
 
-        try{
-            tabelaDeArtistasList.stream()
-                    .filter(tabelaDeArtistas -> tabelaDeArtistas.getName().equals(atorOuAtriz))
-                    .collect(Collectors.toList())
-                    .forEach(it -> System.out.println(atorOuAtriz + " é um(a) ator/atriz que com " + it.getAge() + " anos de idade foi premiado com o filme " + it.getMovie()));
-
-        } catch ( Error e){
-             e.printStackTrace();
-        }
+        tabelaDeArtistasList.stream()
+                .filter(tabelaDeArtistas -> tabelaDeArtistas.getName().equals(atorOuAtriz))
+                .collect(Collectors.toList())
+                .forEach(it -> System.out.println(atorOuAtriz + " é um(a) ator/atriz que com " + it.getAge() + " anos de idade foi premiado com o filme " + it.getMovie()));
 
         sc.close();
+
     }
 }
 

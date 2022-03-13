@@ -1,9 +1,5 @@
 package br.com.segundoprojeto;
 
-import java.util.Arrays;
-
-import static java.lang.Integer.*;
-
 public class TabelaDeArtistas {
     private int index;
     private int year;
@@ -23,7 +19,7 @@ public class TabelaDeArtistas {
         String[] split = line.split(";\\s");
 
         return new TabelaDeArtistas(
-                //NumberFormatException For input string: "1; 1928; 44; Emil Jannings; The Last Command, The Way of All Flesh
+
                 Integer.parseInt(split[0]),
                 Integer.parseInt(split[1]),
                 Integer.parseInt(split[2]),
