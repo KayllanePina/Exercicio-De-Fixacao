@@ -5,13 +5,13 @@ import java.util.Arrays;
 import static java.lang.Integer.*;
 
 public class TabelaDeArtistas {
-    private Integer index;
-    private Integer year;
-    private Integer age;
+    private int index;
+    private int year;
+    private int age;
     private String name;
     private String movie;
 
-    private TabelaDeArtistas(Integer index, Integer year, Integer age, String name, String movie) {
+    private TabelaDeArtistas(int index, int year, int age, String name, String movie) {
         this.index = index;
         this.year = year;
         this.age = age;
@@ -20,40 +20,40 @@ public class TabelaDeArtistas {
     }
 
     public static TabelaDeArtistas of(String line){
-        String[] split = line.split(",(?=\\S)");
+        String[] split = line.split(";\\s");
 
         return new TabelaDeArtistas(
-                //NumberFormatException For input string: "1; 1928; 44; Emil Jannings; The Last Command, The Way of All Flesh"
+                //NumberFormatException For input string: "1; 1928; 44; Emil Jannings; The Last Command, The Way of All Flesh
                 Integer.parseInt(split[0]),
                 Integer.parseInt(split[1]),
                 Integer.parseInt(split[2]),
-                split[3].replace("\"", ""),
+                split[3],
                 split[4]
                 );
 
     }
 
-    public Integer getIndex() {
+    public int getIndex() {
         return index;
     }
 
-    public void setIndex(Integer index) {
+    public void setIndex(int index) {
         this.index = index;
     }
 
-    public Integer getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(Integer year) {
+    public void setYear(int year) {
         this.year = year;
     }
 
-    public Integer getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
