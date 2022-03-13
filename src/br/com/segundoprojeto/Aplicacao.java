@@ -62,7 +62,8 @@ public class Aplicacao{
 
     private static void atoresEAtrizesQueReceberamMaisOscars(){
         leituraDeArquivos = new LeituraDeArquivos("oscar_age_female.csv");
-        leituraDeArquivos = new LeituraDeArquivos("oscar_age_male.csv");
+//        leituraDeArquivos = new LeituraDeArquivos("oscar_age_male.csv");
+
         List<TabelaDeArtistas> tabelaDeArtistasList = leituraDeArquivos.getTabelaDeArtistasList();
 
         tabelaDeArtistasList.stream()
@@ -77,7 +78,7 @@ public class Aplicacao{
 
     private static void resumoDosPremios(){
         leituraDeArquivos = new LeituraDeArquivos("oscar_age_female.csv");
-        leituraDeArquivos = new LeituraDeArquivos("oscar_age_male.csv");
+//        leituraDeArquivos = new LeituraDeArquivos("oscar_age_male.csv");
 
         Scanner sc = new Scanner(System.in);
 
@@ -89,11 +90,9 @@ public class Aplicacao{
         tabelaDeArtistasList.stream()
                 .filter(tabelaDeArtistas -> tabelaDeArtistas.getName().equals(atorOuAtriz))
                 .collect(Collectors.toList())
-                .forEach(it -> System.out.println(atorOuAtriz + " é um(a) ator/atriz que com " + it.getAge() + " anos de idade foi premiado com o filme " + it.getMovie()));
+                .forEach(it -> System.out.println(atorOuAtriz + " é um(a) ator/atriz que com " + it.getAge() + " anos de idade foi premiado(a) com o filme " + it.getMovie() + " no ano de " + it.getYear()));
 
         sc.close();
 
     }
 }
-
-
